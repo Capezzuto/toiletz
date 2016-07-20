@@ -1,6 +1,8 @@
 var Toilet = require('../models/toiletModel.js');
 var User = require('../models/userModel.js');
 var url = require('url');
+var axios = require('axios');
+// var API_KEY = require('../../keys.js');
 
 module.exports = {
   '/': {
@@ -35,7 +37,7 @@ module.exports = {
       Toilet.findToiletByLocation(newToilet.latitude, newToilet.longitude)
         .then(function(toilet) {
           if (toilet) {
-            console.log("toilet already added"); 
+            console.log("toilet already added");
           } else {
             console.log("toilet does not exist");
 
@@ -57,7 +59,7 @@ module.exports = {
       res.end("Received DELETE at /api/toilet/");
     }
   },
-  '/location/': {
+  '/location': {
     get: function(req,res) {
       console.log("Received GET at /api/toilet/location");
     },
@@ -86,6 +88,43 @@ module.exports = {
       res.end("Received DELETE at /api/toilet/location");
     }
   },
+  // '/info': {
+    // get: function(req, res) {
+    //   console.log('get at /info');
+    //   res.end("Received GET at /api/toilet/info")
+    // },
+    // post: function(req, res) {
+    //   console.log('post at /info');
+    //   var currentToilet = req.body;
+    //   var currentLocation = `${currentToilet.latitude}, ${currentToilet.longitude}`;
+    //   console.log('currentToilet', currentToilet);
+    //   console.log('params:', 'key:', API_KEY, 'location:', currentLocation);
+    //   axios.get({
+    //     url: 'https://maps.googleapis.com/maps/api/streetview',
+    //     method: 'get',
+    //     params: {
+    //       key: API_KEY,
+    //       size:'400x400',
+    //       location: currentLocation
+    //     }
+    //   }).then(function(response) {
+    //     console.log("Success on GET to Google Maps");
+    //     res.send(response);
+    //   }).catch(function(err) {
+    //     console.log("Error on GET to Google Maps");
+    //     res.send(err);
+    //   });
+    //
+    // },
+  //   put: function(req, res) {
+  //     console.log('put at /info');
+  //     res.end("Received PUT at /api/toilet/info")
+  //   },
+  //   delete: function(req, res) {
+  //     console.log('delete at /info');
+  //     res.end("Received DELETE at /api/toilet/info")
+  //   }
+  // },
   '/:toiletId': {
     get: function(req,res) {
       console.log("Received GET at /api/toilet/:toiletId");

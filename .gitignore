@@ -11,3 +11,5 @@ toiletz_key.pem
 # IntelliJ
 *.iml
 /.idea
+
+keys.js

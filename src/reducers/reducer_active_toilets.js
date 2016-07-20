@@ -6,6 +6,8 @@ export default function(state = null,action){
 switch(action.type){
 	case 'TOILET_SELECTED':
 		return action.payload;
+  case 'TOILET_STREETVIEW':
+    return Object.assign({}, state, {streetView: action.payload});
 }
 return state;
 }
